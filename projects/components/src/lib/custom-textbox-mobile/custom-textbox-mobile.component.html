@@ -1,0 +1,27 @@
+<smi-control-label></smi-control-label>
+<ng-container *ngIf="inView || isMasked; then viewBlock; else nonViewBlock"></ng-container>
+
+<ng-template #viewBlock>
+  <div class="view-mode-field-value" role="text" [attr.aria-label]="isMasked ? 'Masked value.' : null">
+    {{ fieldValue === undefined || fieldValue === null ? "-" : fieldValue }}
+  </div>
+</ng-template>
+
+<ng-template #nonViewBlock>
+  <textarea
+    #textarea
+    *ngIf="!inView"
+    type="text"
+    class="control-input"
+    (input)="onInput($event.target)"
+    [value]="fieldValue"
+    [attr.rows]="rows"
+    [attr.aria-multiline]="isMultiLine"
+    (paste)="handlePaste($event)"
+    (keydown.enter)="handleEnter($event)"
+    [id]="uuid"
+    [required]="required"
+    [readOnly]="readOnly"
+    [disabled]="disabled"
+  ></textarea>
+</ng-template>

@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+:host(.admin) {
+  pointer-events: none;
+}
+
+:host(.admin) ::ng-deep smi-control-label label {
+  font-weight: var(--font-weight-thick) !important;
+  margin-bottom: var(--inline-x-small) !important;
+}
+
+:host(.show-invalid) .control-input {
+  border-color: var(--alert-normal-bd);
+}
+
+textarea[rows="1"] {
+  resize: none;
+}
+
+.view-mode-field-value {
+  font-size: calc(0.875rem * 1.125 * 1.125);
+}

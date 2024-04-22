@@ -1,0 +1,31 @@
+<spb-labelled-input
+  [childNode]="childNode"
+  [pageModel]="pageModel"
+  [labelClass]="childNode.typeAttributes.inputWidthCSSClass"
+>
+  <ng-container *ngIf="inView; then viewBlock; else nonViewBlock"></ng-container>
+</spb-labelled-input>
+
+<ng-template #viewBlock>
+  <div role="text">
+    {{ fieldValue === undefined || fieldValue === null ? "-" : fieldValue }}
+  </div>
+</ng-template>
+
+<ng-template #nonViewBlock>
+  <textarea
+    #textarea
+    *ngIf="!inView"
+    type="text"
+    class="sas-form-element"
+    (input)="onInput($event.target)"
+    [value]="fieldValue"
+    [attr.rows]="rows"
+    [attr.aria-multiline]="isMultiLine"
+    (paste)="handlePaste($event)"
+    (keydown.enter)="handleEnter($event)"
+    [required]="required"
+    [readOnly]="readOnly"
+    [disabled]="disabled"
+  ></textarea>
+</ng-template>
