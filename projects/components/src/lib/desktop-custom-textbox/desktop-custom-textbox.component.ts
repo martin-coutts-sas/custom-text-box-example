@@ -67,6 +67,8 @@ export class DesktopCustomTextboxComponent implements OnInit, OnDestroy {
         this.isMultiLine = currentValue;
       }
     });
+
+    console.log("ON INIT", this);
   }
 
   ngOnDestroy() {
